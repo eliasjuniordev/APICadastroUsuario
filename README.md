@@ -7,7 +7,7 @@
 
 #### 📥 Clone este projeto 
 
-git clone: https://github.com/eliasjuniordev/Projeto-MVC---Aluguel-equipamentos.git
+git clone: https://github.com/eliasjuniordev/APICadastroUsuario.git
 </br>
 </br>
 </br>
