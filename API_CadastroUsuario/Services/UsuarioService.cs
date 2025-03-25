@@ -40,13 +40,13 @@ namespace API_CadastroUsuario.Services
             return response;
         }
 
-        public async Task<ResponseModel<UsuarioDto>> BuscarUsuariosId(int UsuarioId)
+        public async Task<ResponseModel<Usuario>> BuscarUsuariosId(int UsuarioId)
         {
-            ResponseModel<UsuarioDto> response = new ResponseModel<UsuarioDto>();
+            ResponseModel<Usuario> response = new ResponseModel<Usuario>();
 
             using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
-                var usuarioBanco = await connection.QueryFirstOrDefaultAsync<UsuarioDto>("SELECT * FROM Usuarios WHERE Id = @Id", new { Id = UsuarioId });
+                var usuarioBanco = await connection.QueryFirstOrDefaultAsync<Usuario>("SELECT * FROM Usuarios WHERE Id = @Id", new { Id = UsuarioId });
                
                 if (usuarioBanco == null)
                 {
@@ -54,8 +54,8 @@ namespace API_CadastroUsuario.Services
                     response.Mensagem = "Usuário não encontrado";
                     return response;
                 }
-                var UsuarioMapeado = _mapper.Map<UsuarioDto>(usuarioBanco);
-                response.Dados = UsuarioMapeado;
+                
+                response.Dados = usuarioBanco;
                 response.Mensagem = "Usuário encontrado com sucesso";
             }
 
